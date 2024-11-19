@@ -1,8 +1,16 @@
 body {
-    line-height: 1.5;
+    line-height: 1;
     margin: 0;
     padding: 0;
     background-color: rgb(154, 234, 234);
+}
+
+@media screen and (max-width: 560px) {
+
+    body {
+        line-height: normal;
+    }
+
 }
 
 /* heading styles */
@@ -13,6 +21,15 @@ header {
     color: rgb(136, 178, 214);
 }
 
+@media screen and (max-width: 560px) {
+
+    header {
+        font-size: 0.8rem;
+        padding: 15px;
+    }
+
+}
+
 /* main styles */
 main {
     padding: 2rem;
@@ -21,9 +38,44 @@ main {
     color: rgb(23, 24, 24);
 }
 
+@media screen and (max-width: 560px) {
+
+    main {
+        padding: 0.2rem;
+    }
+
+}
+
+#totals {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 560px) {
+
+    #totals {
+        font-size: 1rem;
+    }
+
+}
+
+.totals-first {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30%;
+}
+
+.totals-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #transaction-form {
     background-color: bisque;
-    padding: 2rem;
     margin-bottom: 4rem;
     padding: 4rem;
     border: 10px solid rgb(102, 95, 95);
@@ -39,7 +91,8 @@ form label {
     margin-top: 2rem;
 }
 
-form input, select {
+form input,
+select {
     padding: 10px;
     margin-top: 10px;
     border: 4px solid rgb(102, 95, 95);
@@ -67,12 +120,114 @@ form button:hover {
     color: aliceblue;
 }
 
+@media screen and (max-width: 560px) {
+
+    #transaction-form {
+        background-color: bisque;
+        margin-bottom: 0rem;
+        padding: 2rem;
+        border: 5px solid rgb(102, 95, 95);
+        border-radius: 0.5rem;
+    }
+
+    #transaction-form h2 {
+        font-size: 1.05rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form label {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+    }
+
+    form input,
+    select {
+        padding: 10px;
+        margin-top: 5px;
+        border: 2px solid rgb(102, 95, 95);
+        border-radius: 5px;
+    }
+
+    .form-btns {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    form button {
+        background-color: rgb(102, 95, 95);
+        margin-top: 0.6rem;
+        padding: 0.5rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    form button:hover {
+        background-color: rgb(48, 36, 22);
+        color: aliceblue;
+    }
+
+}
+
+#transactions-list {
+    display: flex;
+    flex-direction: column;
+}
+
+#transactions-list h2 {
+    text-align: center;
+}
+
+#filters {
+    line-height: 0;
+    margin-bottom: 1rem;
+}
+
+#filter-form {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    font-size: larger;
+    gap: 20%;
+}
+
+#filters h3 {
+    padding-left: 1rem;
+}
+
+#filter-form label {
+    align-content: center;
+}
+
+@media screen and (max-width: 560px) {
+
+    #filter-form {
+        gap: 2%;
+    }
+
+    #filters h3 {
+        padding-left: 0.5rem;
+    }
+
+    #transactions-list h2 {
+        text-align: center;
+    }
+
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 4px solid rgb(102, 95, 95);
     padding: 8px;
     background-color: rgb(161, 88, 230);
@@ -98,9 +253,48 @@ td button {
 
 .edit {
     background-color: rgb(84, 75, 244);
-} 
+}
 
 .edit:hover {
     background-color: rgb(19, 78, 58);
     color: aliceblue;
-} 
+}
+
+@media screen and (max-width: 560px) {
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 2px solid rgb(102, 95, 95);
+        padding: 4px;
+        background-color: rgb(161, 88, 230);
+        color: rgb(63, 40, 40);
+        text-align: center;
+    }
+
+    td button {
+        border: none;
+        padding: 5px 6px;
+        cursor: pointer;
+        border-radius: 0.5rem;
+    }
+
+    .delete {
+        background-color: rgb(233, 40, 40);
+    }
+
+    .delete:hover {
+        background-color: rgb(143, 7, 7);
+        color: aliceblue;
+    }
+
+    .edit {
+        background-color: rgb(84, 75, 244);
+    }
+
+}

@@ -1,6 +1,6 @@
 //array to store the all type of transactions
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-let isEditing=false;
+let isEditing = false;
 let editingTransactionId = null;
 let currentFilter = "All";
 
@@ -20,7 +20,7 @@ function calculateTotals() {
             totalExpenses += transaction.amount;
         }
     });
-    const netBalance = totalIncome-totalExpenses;
+    const netBalance = totalIncome - totalExpenses;
     document.getElementById("total-income").textContent = parseFloat(totalIncome).toFixed(2);
     document.getElementById("total-expenses").textContent = parseFloat(totalExpenses).toFixed(2);
     document.getElementById("net-balance").textContent = parseFloat(netBalance).toFixed(2);
@@ -30,7 +30,7 @@ function calculateTotals() {
 function addTransaction(type, desc, amount) {
     const transaction = {
         id: Date.now().toString(), //since this will be definitely unique value
-        type, 
+        type,
         desc,
         amount: parseFloat(parseFloat(amount).toFixed(2)),
     }
@@ -42,14 +42,14 @@ function addTransaction(type, desc, amount) {
 
 //function to update the already existed transaction
 function updateTransaction(id, type, desc, amount) {
-    transactions.forEach( transaction => {
-        if(transaction.id === id){ // finding the matching id
+    transactions.forEach(transaction => {
+        if (transaction.id === id) { // finding the matching id
             transaction.type = type;
             transaction.desc = desc;
             transaction.amount = parseFloat(parseFloat(amount).toFixed(2));
         }
     })
-    isEditing = false; 
+    isEditing = false;
     editingTransactionId = null;
     calculateTotals();
     saveToLocal();
@@ -59,7 +59,7 @@ function updateTransaction(id, type, desc, amount) {
 
 //function to delete the existing transaction 
 function deleteTransaction(id) {
-    transactions =transactions.filter(transaction => transaction.id!==id);
+    transactions = transactions.filter(transaction => transaction.id !== id);
     calculateTotals();
     saveToLocal();
     showTransactions();
@@ -67,10 +67,10 @@ function deleteTransaction(id) {
 
 // function to move the transaction from the table to form
 function moveTransaction(id) {
-    isEditing=true;
+    isEditing = true;
     editingTransactionId = id;
     document.getElementById("add-btn").textContent = "Update";
-    const selectedTransaction=transactions.find(transaction => transaction.id === id); // get that selected transaction
+    const selectedTransaction = transactions.find(transaction => transaction.id === id); // get that selected transaction
     document.getElementById("transaction-id").value = selectedTransaction.id;
     document.getElementById("transaction-type").value = selectedTransaction.type;
     document.getElementById("transaction-desc").value = selectedTransaction.desc;
@@ -81,11 +81,11 @@ function moveTransaction(id) {
 //function to show(render) the transactions
 function showTransactions() {
     const transactionsList = document.getElementById("transactions-list-body"); //all transactions in the table
-    transactionsList.innerHTML='';
-    const filteredList = transactions.filter(transaction => (currentFilter === "All"||transaction.type === currentFilter));
+    transactionsList.innerHTML = '';
+    const filteredList = transactions.filter(transaction => (currentFilter === "All" || transaction.type === currentFilter));
     filteredList.forEach(transaction => {
-        const tableRow=document.createElement('tr');
-        tableRow.innerHTML=`
+        const tableRow = document.createElement('tr');
+        tableRow.innerHTML = `
             <td>${transaction.type}</td>
             <td>${transaction.desc}</td>
             <td>${parseFloat(transaction.amount).toFixed(2)}</td>
@@ -103,7 +103,7 @@ function resetForm() {
     document.getElementById("form").reset();
     document.getElementById("transaction-id").value = '';
     document.querySelector("button[type='submit']").textContent = "Add";
-    isEditing = false; 
+    isEditing = false;
     editingTransactionId = null;
     showTransactions();
 }
@@ -111,23 +111,24 @@ function resetForm() {
 //function to handle the submission of the form
 function handleSubmit(event) {
     event.preventDefault();
-    const id = document.getElementById("transaction-id").value ;
-    const type = document.getElementById("transaction-type").value ;
-    const desc = document.getElementById("transaction-desc").value ;
-    const amount = document.getElementById("transaction-amount").value ;
-    id?updateTransaction(id, type, desc, amount):addTransaction(type, desc, amount);
+    const id = document.getElementById("transaction-id").value;
+    const type = document.getElementById("transaction-type").value;
+    const desc = document.getElementById("transaction-desc").value;
+    const amount = document.getElementById("transaction-amount").value;
+    id ? updateTransaction(id, type, desc, amount) : addTransaction(type, desc, amount);
     resetForm();
 }
 
 //on submit save the info
-document.getElementById("form").addEventListener("submit", handleSubmit); 
+document.getElementById("form").addEventListener("submit", handleSubmit);
 
 document.getElementById("reset-btn").addEventListener("click", resetForm);
 
 // dd event listener to update the filter
 document.getElementById("filter-form").addEventListener("change", event => {
-    currentFilter = event.target.value; 
+    currentFilter = event.target.value;
     showTransactions();
 });
 
 showTransactions();
+calculateTotals();

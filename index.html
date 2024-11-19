@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Expense Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
+
 <body>
     <header>
-        <h1>Income Expense Calculator</h1>
+        <h1>Income Expense Calculator <span><i class="fa-solid fa-calculator"></i></span></h1>
         <p>Add your own expense or income to track transactions</p>
     </header>
     <main>
-        <section id="totals">
-            <h2>Summary</h2>
-            <div>
-                <p><strong>Total Income:</strong> <span id="total-income">0</span></p>
-                <p><strong>Total Expenses:</strong> <span id="total-expenses">0</span></p>
-                <p><strong>Net Balance:</strong> <span id="net-balance">0</span></p>
+        <section>
+            <div id="totals">
+                <div class="totals-first">
+                    <p><strong>Total Income:</strong> <span id="total-income">0</span></p>
+                    <p><strong>Total Expenses:</strong> <span id="total-expenses">0</span></p>
+                </div>
+                <div class="totals-second">
+                    <p><strong>Net Balance:</strong> <span id="net-balance">0</span></p>
+                </div>
             </div>
         </section>
         <section id="transaction-form">
@@ -34,7 +39,7 @@
                 <label for="transaction-desc">Description</label>
                 <input type="text" id="transaction-desc" placeholder="Enter description" />
                 <label for="transaction-amount">Amount</label>
-                <input type="number" id="transaction-amount" placeholder="Enter amount" required/>
+                <input type="number" step="0.01" min="0" id="transaction-amount" placeholder="Enter amount" required />
                 <div class="form-btns">
                     <button type="submit" id="add-btn">Add</button>
                     <button type="reset" id="reset-btn">Reset</button>
@@ -47,15 +52,9 @@
                 <section id="filters">
                     <h3>Filters</h3>
                     <form id="filter-form">
-                        <label>
-                            <input type="radio" name="filter" value="All" checked> All
-                        </label>
-                        <label>
-                            <input type="radio" name="filter" value="Income"> Income
-                        </label>
-                        <label>
-                            <input type="radio" name="filter" value="Expense"> Expense
-                        </label>
+                        <label><input type="radio" name="filter" value="All" checked> All </label>
+                        <label><input type="radio" name="filter" value="Income"> Income </label>
+                        <label><input type="radio" name="filter" value="Expense"> Expense </label>
                     </form>
                 </section>
             </div>
@@ -75,4 +74,5 @@
     </main>
     <script src="./index.js"></script>
 </body>
+
 </html>
