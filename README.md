@@ -29,7 +29,7 @@ The **Income Expense Calculator** is a simple web application that allows users 
 ---
 
 
-## How to Use Th Application
+## How to Use The Application
 
 1. **Add a Transaction**:
    - Select "Income" or "Expense" from the dropdown.
